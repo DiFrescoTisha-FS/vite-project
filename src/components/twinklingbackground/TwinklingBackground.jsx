@@ -5,7 +5,7 @@ import twinklingImage from '../../images/twinkling.png';
 import cloudImage2 from '../../images/clouds2.png';
 import PropTypes from 'prop-types';
 
-import { SaturnImage, EarthImage, EarthVideo } from '../hero/HeroElements';
+import { SaturnImage, EarthImage } from '../hero/HeroElements';
 
 const moveTwinkBack = keyframes`
   from {
@@ -86,7 +86,7 @@ const Star = styled.div`
   width: 1px;
   height: 1px;
   background-color: transparent;
-  box-shadow: ${({ boxShadow }) => boxShadow};
+  box-shadow: ${({ boxshadow }) => boxshadow};
   z-index: 3;
 `;
 
@@ -218,8 +218,8 @@ export const Cloud6 = styled.div`
 `;
 
 // The main component
-const TwinklingBackground = ({ saturnImage, earthImage, earthVideo, plutoVideo }) => {
-  console.log("PlutoVideo prop:", plutoVideo);
+const TwinklingBackground = ({ saturnImage, earthImage }) => {
+  // console.log("PlutoVideo prop:", plutoVideo);
   const starBoxShadow = generateStars(300); // for example 300 stars
   const meteors = createMeteors(5); // for example 25 meteors
 
@@ -227,17 +227,17 @@ const TwinklingBackground = ({ saturnImage, earthImage, earthVideo, plutoVideo }
   <BackgroundContainer>
       <Stars />
       <Twinkling />
-      <Star boxShadow={starBoxShadow} />
+      <Star boxshadow={starBoxShadow} />
       {meteors}
       {saturnImage && <SaturnImage src={saturnImage} alt="Saturn" />}
       {earthImage && <EarthImage src={earthImage} alt="Earth" />}
 
-      {earthVideo && (
+      {/* {earthVideo && (
         <EarthVideo autoPlay loop muted>
           <source src={earthVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </EarthVideo>
-     )}
+     )} */}
 
   {/* <Cloud1 style={{ zIndex: '10' }} />
   <Cloud2 style={{ zIndex: '10' }} />
