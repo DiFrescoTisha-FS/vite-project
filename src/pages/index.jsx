@@ -3,11 +3,13 @@
 // import Navbar from '../components/navbar/Navbar';
 // import Hero from '../components/hero/Hero';
 import Artist from '../components/artistInfo/Artist';
+import Thoughts from '../components/thoughts/Thoughts';
 
 const Home = () => {
   return (
     <div>
-      {/* <Hero /> */}
+      {/* <Hero /> */}      
+      <Thoughts />
       <Artist />
     </div>
   )

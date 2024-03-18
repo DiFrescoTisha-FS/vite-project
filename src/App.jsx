@@ -5,7 +5,6 @@ import "./App.css";
 import Home from "./pages";
 import { Routes, Route } from "react-router-dom";
 // import Dashboard from "./pages/dashboard";
-import "./App.css"
 // import Twinkling from "./components/twinkling/Twinkling";
 
 function App() {

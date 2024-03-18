@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { FaArrowAltCircleUp } from 'react-icons/fa';
-import { BsChatQuoteFill } from "react-icons/bs";
-// import { MdFrontHand } from 'react-icons/md';
+import { MdFrontHand } from 'react-icons/md';
 import { Link } from 'react-scroll';
 
 const tabletBreakpoint = '768px'; 
@@ -44,14 +43,6 @@ export const ThoughtsBg = styled.div`
   @media screen and (max-width: 480px) {
     background: url(${props => props.backgroundImageMobile}) no-repeat center center;
   }
-`;
-
-export const StyledImage = styled.img`
-width: 100%; // Full width
-height: auto; // Maintain aspect ratio
-object-fit: cover; // Cover the area without stretching
-border-radius: 10px; // Rounded corners
-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); // Add some shadow
 `;
 
 export const ThoughtsWrapper = styled.div`
@@ -194,6 +185,24 @@ export const Subtitle = styled.p`
   }
 `;
 
+// export const PlutoVideo = styled.video`
+//   position: absolute;
+//   top: 24%;
+//   right: 8%;
+//   z-index: 10;
+//   width: 200px;
+//   height: auto;
+//   /* border: 1px solid red; */
+  
+
+//   // Hide Earth on tablet and mobile views
+//   @media screen and (max-width: 768px) {
+//     width: 50px;
+//     left: 80%;
+//     transform: translateX(-50%);
+//   }
+// `
+
 export const BtnWrap = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -204,7 +213,7 @@ export const Button = styled(Link)`
     margin-top: 10px;
 `;
 
-export const ArrowFilled = styled(BsChatQuoteFill)`
+export const ArrowFilled = styled(MdFrontHand)`
     margin-left: 8px;
     font-size: 20px;
 `;

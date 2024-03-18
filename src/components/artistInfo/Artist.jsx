@@ -63,55 +63,37 @@ const ArtistInfo = ({
 }) => {
   // Create a ref to the audio player
   const audioPlayer = useRef();
-  const [currentPlaying, setCurrentPlaying] = useState("");
+  const [currentSong, setCurrentSong] = useState("");
   const [tooltip, setTooltip] = useState("");
   const [tooltipPos, setTooltipPos] = useState({ top: 0, left: 0 });
   const mapWrapperRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  useEffect(() => {
-    if (isPlaying) {
-      audioPlayer.current.play();
-    } else {
-      audioPlayer.current.pause();
-    }
-  }, [isPlaying]);
 
-  const onAreaClicked = (area) => {
-    console.log("Area clicked:", area);
-    if (currentPlaying === area.href) {
-      // Toggle between play and pause
-      setIsPlaying(!isPlaying);
+  const togglePlayPause = (songHref) => {
+    const isCurrentSongPlaying = isPlaying && currentSong === songHref;
+
+    if (isCurrentSongPlaying) {
+      setIsPlaying(false); // This will pause the song.
     } else {
-      // Set the new song to play
-      audioPlayer.current.src = area.href;
-      audioPlayer.current.load();
-      setCurrentPlaying(area.href);
-      setIsPlaying(true); // Will trigger the useEffect to play the new song
+      setCurrentSong(songHref); // Change the song.
+      setIsPlaying(true); // This will play the new song.
     }
   };
-    
-    
+
+  const onAreaClicked = (area) => {
+    togglePlayPause(area.href);
+  };
+
   useEffect(() => {
     const audioEl = audioPlayer.current;
-  
-    const handleSongEnd = () => {
-      setCurrentPlaying("");
-      console.log("Song ended");
-    };
-  
-    // Ensure we only add the event listener if the audio element exists
-    if (audioEl) {
-      audioEl.addEventListener('ended', handleSongEnd);
+    audioEl.src = currentSong;
+    if (isPlaying) {
+      audioEl.play();
+    } else {
+      audioEl.pause();
     }
-  
-    // Cleanup function to remove the event listener
-    return () => {
-      if (audioEl) {
-        audioEl.removeEventListener('ended', handleSongEnd);
-      }
-    };
-  }, []);  
+  }, [currentSong, isPlaying]);
   
   const onAreaEnter = (area) => {
     // Since your shape is a circle, the area.coords array contains [x, y, radius].
@@ -188,7 +170,8 @@ const ArtistInfo = ({
           </ArtistInfoRow>
         </ArtistInfoWrapper>
       </ArtistInfoContainer>
-      <audio ref={audioPlayer} preload="auto" />
+      <audio key={currentSong} ref={audioPlayer} preload="auto" onEnded={() => setIsPlaying(false)} />
+
     </>
   );
 };
